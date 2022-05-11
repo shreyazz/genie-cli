@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const process = require("process");
 const fs = require("fs");
 const clc = require("cli-color");
@@ -27,7 +29,6 @@ inquirer
   .prompt([
     {
       type: "confirm",
-      message: "Should we start? ",
       name: "choice",
     },
     // {
@@ -45,7 +46,7 @@ inquirer
       fs.mkdirSync(`${process.cwd()}/model`);
       fs.mkdirSync(`${process.cwd()}/routes`);
 
-      // install module ffi
+      // * install module / packages
       child_process.execSync("npm install express", { stdio: [0, 1, 2] });
       child_process.execSync("npm install cors", { stdio: [0, 1, 2] });
       child_process.execSync("npm i jsonwebtoken", { stdio: [0, 1, 2] });
@@ -54,15 +55,23 @@ inquirer
       child_process.execSync("npm i bcryptjs", { stdio: [0, 1, 2] });
 
       //  * making files and appending the biolerplate code into ir.
-      fs.appendFileSync(
-        `${process.cwd()}/server.js`,
-        `const express = require('express')`
-      );
       fs.appendFileSync(`${process.cwd()}/.env`, `PORT=8080`);
 
-      //   fs.link(`${process.cwd()}/db`, "/connection.js", (err) => {
-      //     if (err) console.log(err);
-      //   });
+      fs.appendFileSync(
+        `${process.cwd()}/server.js`,
+        `
+const express = require('express');
+const app = express();
+require('dotenv').config();
+const cors = require('cors');
+app.use(cors());
+// middlewares
+app.use(express.json());
+const PORT = process.env.PORT || 3001;
+// PORT
+app.listen(PORT, () => console.log('Server started on PORT Number: ' + PORT))
+`
+      );
     }
     console.log(answers.choice);
   })
