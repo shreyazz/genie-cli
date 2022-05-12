@@ -1,5 +1,5 @@
 {
-  "name": "backend_builder",
+  "name": "@shreyazz/genie",
   "version": "1.0.0",
   "description": "",
   "bin": "./bin.js",
@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shreyas Pahune",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shreyazz/genie-cli"
+  },
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

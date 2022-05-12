@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+// TODO: Make more detailed console logs and comment the code
 const process = require("process");
 const fs = require("fs");
 const clc = require("cli-color");
@@ -47,12 +47,13 @@ inquirer
       fs.mkdirSync(`${process.cwd()}/routes`);
 
       // * install module / packages
+      child_process.execSync("npm init -y", { stdio: [0, 1, 2] });
       child_process.execSync("npm install express", { stdio: [0, 1, 2] });
       child_process.execSync("npm install cors", { stdio: [0, 1, 2] });
       child_process.execSync("npm i jsonwebtoken", { stdio: [0, 1, 2] });
       child_process.execSync("npm i dotenv", { stdio: [0, 1, 2] });
-      child_process.execSync("npm i dotenv", { stdio: [0, 1, 2] });
       child_process.execSync("npm i bcryptjs", { stdio: [0, 1, 2] });
+      child_process.execSync("npm i -D nodemon", { stdio: [0, 1, 2] });
 
       //  * making files and appending the biolerplate code into ir.
       fs.appendFileSync(`${process.cwd()}/.env`, `PORT=8080`);
