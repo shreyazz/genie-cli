@@ -160,10 +160,10 @@ inquirer
     } else if (answers.choice == "React Cleaner") {
       fs.unlinkSync(`${process.cwd()}/src/reportWebVitals.js`);
       fs.unlinkSync(`${process.cwd()}/src/setupTests.js`);
-      fs.unlinkSync(`${process.cwd()}/App.test.js`);
-      fs.mkdirSync(`${process.cwd()}`, "/src/components");
-      fs.mkdirSync(`${process.cwd()}`, "/src/assets");
-      fs.mkdirSync(`${process.cwd()}`, "/src/pages");
+      fs.unlinkSync(`${process.cwd()}/src/App.test.js`);
+      fs.mkdirSync(`${process.cwd()}/src/components`);
+      fs.mkdirSync(`${process.cwd()}/src/assets`);
+      fs.mkdirSync(`${process.cwd()}/src/pages`);
     }
   })
   .catch((error) => {
