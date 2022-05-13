@@ -132,13 +132,13 @@ inquirer
       fs.mkdirSync(`${process.cwd()}/model`);
       fs.mkdirSync(`${process.cwd()}/routes`);
       // * install module / packages
-      child_process.execSync("npm init -y", { stdio: [0, 1, 2] });
-      child_process.execSync("npm install express", { stdio: [0, 1, 2] });
-      child_process.execSync("npm install cors", { stdio: [0, 1, 2] });
-      child_process.execSync("npm i jsonwebtoken", { stdio: [0, 1, 2] });
-      child_process.execSync("npm i dotenv", { stdio: [0, 1, 2] });
-      child_process.execSync("npm i bcryptjs", { stdio: [0, 1, 2] });
-      child_process.execSync("npm i -D nodemon", { stdio: [0, 1, 2] });
+      child_process.execSync("npm init -y", { stdio: [] });
+      child_process.execSync("npm install express", { stdio: [] });
+      child_process.execSync("npm install cors", { stdio: [] });
+      child_process.execSync("npm i jsonwebtoken", { stdio: [] });
+      child_process.execSync("npm i dotenv", { stdio: [] });
+      child_process.execSync("npm i bcryptjs", { stdio: [] });
+      child_process.execSync("npm i -D nodemon", { stdio: [] });
       //  * making files and appending the biolerplate code into ir.
       fs.appendFileSync(`${process.cwd()}/.env`, `PORT=8080`);
       fs.appendFileSync(
@@ -148,11 +148,18 @@ inquirer
       const app = express();
       require('dotenv').config();
       const cors = require('cors');
-      app.use(cors());
+
       // middlewares
+      app.use(cors());
       app.use(express.json());
+      
+      // defining port
       const PORT = process.env.PORT || 3001;
-      // PORT
+      
+      // setting up an empty GET Route
+      app.get('/', (req, res)=>{res.json({message: "You've come to the right place... it's a GET request!!"})});
+      
+      // Starting Server on PORT
       app.listen(PORT, () => console.log('Server started on PORT Number: ' + PORT))
       `
       );
@@ -164,6 +171,11 @@ inquirer
       fs.mkdirSync(`${process.cwd()}/src/components`);
       fs.mkdirSync(`${process.cwd()}/src/assets`);
       fs.mkdirSync(`${process.cwd()}/src/pages`);
+      console.log(
+        clc.blueBright(
+          "Folders are created and files are deleted... \n Happy Coding ✨"
+        )
+      );
     }
   })
   .catch((error) => {
