@@ -1,15 +1,17 @@
 {
   "name": "@shreyazz/genie",
-  "version": "1.0.4",
-  "description": "",
-  "bin": "./bin.js",
+  "version": "1.0.5",
+  "description": "Genie is an utility CLI which helps to setup the basic backend project for developers, by downloading the usual required packages. It also sets up the `server.js` file with boiler plate code to get the server up and running with just one command.",
+  "bin": {
+    "genie": "bin.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shreyas Pahune",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shreyazz/genie-cli"
+    "url": "git+https://github.com/shreyazz/genie-cli.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -19,7 +21,15 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "inquirer": "^8.2.4",
-    "jsonwebtoken": "^8.5.1",
-    "tree-node-cli": "^1.5.2"
+    "jsonwebtoken": "^8.5.1"
+  },
+  "bugs": {
+    "url": "https://github.com/shreyazz/genie-cli/issues"
+  },
+  "homepage": "https://github.com/shreyazz/genie-cli#readme",
+  "main": "bin.js",
+  "keywords": [],
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

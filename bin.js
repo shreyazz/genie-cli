@@ -4,7 +4,6 @@ const process = require("process");
 const fs = require("fs");
 const clc = require("cli-color");
 const inquirer = require("inquirer");
-const tree = require("tree-node-cli");
 const child_process = require("child_process");
 
 console.log(
@@ -12,17 +11,6 @@ console.log(
     `\nHeyy, I am Genie 🧞‍♂️. I can build: \n1. Basic backend folder structures with all the required packages and boiler plate code\n2. Clean your react project by removing all the unnecessary files and adding all the necessary folders.\n`
   )
 );
-
-// * arguments
-const args = process.argv.splice(2, process.argv.length);
-
-// * tree structure
-// const treeStruct = tree(`${process.cwd()}`, {
-//   allFiles: true,
-//   exclude: [/node_modules/],
-//   maxDepth: 4,
-// });
-// console.log(clc.blueBright(treeStruct));
 
 // * inquirer
 inquirer
@@ -35,8 +23,10 @@ inquirer
   ])
   .then((answers) => {
     if (answers.choice == "Backend Builder") {
-      console.log("Building folders...🔨");
-      console.log("Initializing your server...⛳️");
+      console.log("Building folders and initializing your server...⛳️");
+      console.log(
+        "This might take a few seconds...⏳ (Genie: I am getting things ready for you)"
+      );
       fs.mkdirSync(`${process.cwd()}/db`);
       fs.mkdirSync(`${process.cwd()}/model`);
       fs.mkdirSync(`${process.cwd()}/routes`);
@@ -48,7 +38,9 @@ inquirer
       child_process.execSync("npm i dotenv", { stdio: [] });
       child_process.execSync("npm i bcryptjs", { stdio: [] });
       child_process.execSync("npm i -D nodemon", { stdio: [] });
-      //  * making files and appending the biolerplate code into ir.
+
+      //  * making files and appending the biolerplate code into server.js file.
+
       fs.appendFileSync(`${process.cwd()}/.env`, `PORT=8080`);
       fs.appendFileSync(
         `${process.cwd()}/server.js`,
@@ -74,7 +66,7 @@ inquirer
       );
       console.log(
         clc.blueBright(
-          "Folders are created and server.js is initialized with boiler plate code...\n Happy Coding ✨"
+          "Folders are created and server.js is initialized with boilerplate code...\n Happy Coding ✨"
         )
       );
       // console.log("Backend Builder selected");
