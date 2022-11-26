@@ -21,7 +21,6 @@ const args = arg({
 });
 
 
-
 const buildBackend = (port = 8080) => {
   console.log("Building folders and initializing your server...⛳️");
   console.log(
