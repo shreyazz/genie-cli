@@ -1,7 +1,7 @@
 {
   "name": "@shreyazz/genie",
-  "version": "1.1.2",
-  "description": "Genie is an utility CLI which helps to setup the basic backend project for developers, by downloading the usual required packages. It also sets up the `server.js` file with boiler plate code to get the server up and running with just one command.",
+  "version": "1.1.3",
+  "description": "Genie is an utility CLI that makes the life of a developer easy by doing the boring and monotonous tasks.",
   "bin": {
     "genie": "bin.js"
   },
