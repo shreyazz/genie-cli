@@ -7,12 +7,6 @@ const inquirer = require("inquirer");
 const child_process = require("child_process");
 const arg = require("arg");
 
-console.log(
-  clc.blueBright.bold(
-    `\nHeyy, I am Genie 🧞‍♂️. I can build: \n1. Basic backend folder structures with all the required packages and boiler plate code\n2. Clean your react project by removing all the unnecessary files and adding all the necessary folders.\n`
-  )
-);
-
 const args = arg({
   "--port": Number,
   "--page": [String],
@@ -20,16 +14,50 @@ const args = arg({
   "--opts": Boolean,
 });
 
+const buildComponent = (page) => {
+  fs.mkdir(`${process.cwd()}/src/pages/${page}`, { recursive: true }, (err) => {
+    if (err) {
+      console.log(clc.redBright("Something went wrong...😓"));
+    }
+    fs.appendFileSync(
+      `${process.cwd()}/src/pages/${page}/${page}.jsx`,
+      `
+  import React from 'react'
+  import './${page}.css'
+  const ${page} = () => {
+    return (
+      <div>${page}</div>
+    )
+  }
+  
+  export default ${page}
+    `
+    );
+    fs.appendFileSync(`${process.cwd()}/src/pages/${page}/${page}.css`, "");
+  });
+
+  console.log(
+    clc.blueBright("Page is created and files are setup... \n Happy Coding ✨")
+  );
+};
 
 const buildBackend = (port = 8080) => {
-  console.log("Building folders and initializing your server...⛳️");
   console.log(
-    "This might take a few seconds...⏳ (Genie: I am getting things ready for you)"
+    clc.blueBright("Building folders and initializing your server...⛳️")
   );
+
+  console.log(
+    clc.blueBright(
+      "This might take a few seconds...⏳ (Genie: I am getting stuff ready for you)"
+    )
+  );
+
   fs.mkdirSync(`${process.cwd()}/model`);
   fs.mkdirSync(`${process.cwd()}/routes`);
   fs.appendFileSync(`${process.cwd()}/.env`, `\nPORT=${port}\n`);
+
   // * install module / packages
+
   child_process.execSync("npm init -y", { stdio: [] });
   child_process.execSync("npm install express", { stdio: [] });
   child_process.execSync("npm install cors", { stdio: [] });
@@ -71,6 +99,11 @@ const buildBackend = (port = 8080) => {
 };
 
 const giveOpts = () => {
+  console.log(
+    clc.blueBright.bold(
+      `\nHeyy, I am Genie 🧞‍♂️. I can build: \n1. Basic backend folder structures with all the required packages and boiler plate code\n2. Clean your react project by removing all the unnecessary files and adding all the necessary folders.\n`
+    )
+  );
   inquirer
     .prompt([
       {
@@ -122,10 +155,7 @@ const giveOpts = () => {
                   buildBackend();
                 });
             } else {
-              fs.appendFileSync(
-                `${process.cwd()}/.env`,
-                `JWT_SECRET=secret\n`
-              );
+              fs.appendFileSync(`${process.cwd()}/.env`, `JWT_SECRET=secret\n`);
               fs.mkdirSync(`${process.cwd()}/db`);
 
               buildBackend();
@@ -154,13 +184,14 @@ const giveOpts = () => {
     });
 };
 
-
 const isCreateBackend = args["--backend"];
-const isOpts = args['--opts'];
+const isOpts = args["--opts"];
+const pageName = args["--page"];
 
 if (isCreateBackend) {
   buildBackend(args["--port"]);
-}else if(isOpts){
+} else if (isOpts) {
   giveOpts();
+} else if (pageName.length > 0) {
+  buildComponent(pageName[0]);
 }
-
