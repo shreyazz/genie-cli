@@ -2,7 +2,8 @@
 
 Genie is an utility CLI that makes the life of a developer easy by doing the boring and monotonous tasks.
 
-[![Featured on Openbase](https://badges.openbase.com/js/featured/@shreyazz/genie.svg?token=cGD1paktfWnt6BmYZnlkb2+jDnCYlvXFjtH9CzIToUI=)](https://openbase.com/js/@shreyazz/genie?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
+
+![npm](https://img.shields.io/npm/dt/@shreyazz/genie?color=green&label=downloads&logo=npm)   [![Featured on Openbase](https://badges.openbase.com/js/featured/@shreyazz/genie.svg?token=cGD1paktfWnt6BmYZnlkb2+jDnCYlvXFjtH9CzIToUI=)](https://openbase.com/js/@shreyazz/genie?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/shreyazz/genie-cli?color=green&label=package%20size&logo=github)
 
 ## What Genie can do for you 🔮
 
